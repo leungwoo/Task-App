@@ -1,85 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { Box, TextField } from '@mui/material';
 import './App.css';
 import Task from './Task';
 import Age from './components/Age';
 import CatFacts from './components/CatFacts';
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { Home } from './components/Home';
+import NavBar from './components/NavBar';
+import Play from './components/Play';
 
-
-// fetch('https://catfact.ninja/fact')
-//     .then((res) => res.json())
-//     .then((data) => {
-//         console.log(data);
-//     });
-
-
-export default function App() {
-    const [todoList, setTodoList] = useState([]);
-    const [newTask, setNewTask] = useState('');
-
-
-
-    const addTask = () => {
-        const task = {
-            id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-            taskName: newTask,
-            completed: false,
-        };
-        setTodoList([...todoList, task]);
-    };
-
-    const deleteTask = (id) => {
-        setTodoList(todoList.filter((task) => task.id !== id));
-    };
-    const completeTask = (id) => {
-        setTodoList(todoList.map((task) => {
-            if (task.id === id) {
-                return { ...task, completed: true, };
-            }
-            else { return task; }
-        }));
-    };
-
+function App() {
     return (
-        <div className='App'>
-            <Box className='addTask'>
-                <TextField sx={{
-                    input: {
-                        fontWeight: '700',
-                        border: 'none',
-                        borderRadius: '4px'
-                    },
-                    width: { lg: '400px', xs: '250px' },
-                    backgroundColor: '#FFFF',
-                }}
-                    placeholder='Enter New Task'
-                    type="text"
-                    onChange={(event) => { setNewTask(event.target.value); }} />
-                <button onClick={addTask}>AddTask</button>
-            </Box>
-            <Box className='list'>
-                {todoList.map((task) => {
-                    return <Task
-                        taskName={task.taskName}
-                        id={task.id}
-                        completed={task.completed}
-                        deleteTask={deleteTask}
-                        completeTask={completeTask}
-                    />;
-                })}
-            </Box>
+        <div>
+            <Router>
+                <NavBar />
 
-
-            <Box>
-                <CatFacts />
-            </Box>
-
-            <hr />
-            <Age />
-
-
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/age' element={<Age />} />
+                    <Route path='/catfacts' element={<CatFacts />} />
+                    <Route path='/play' element={<Play />} />
+                    <Route path='*' element={<h1>Error 404</h1>} />
+                </Routes>
+            </Router>
         </div>
-
     );
 };
+export default App;
+{/* <Box>
+                <AppBar>
+                    <nav>
+                        <Link to='/age'>Age </Link>
+                    </nav>
+                    <nav>
+                        <Link to='/catfacts'>CatFacts </Link>
+                    </nav>
 
+                </AppBar>
+            </Box> */}

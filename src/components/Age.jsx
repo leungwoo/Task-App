@@ -12,13 +12,15 @@ const Age = () => {
     };
 
     return (
-        <Box>
+        <Box padding='100px'>
             <input placeholder='eg Pedro' onChange={(event) => { setInputValue(event.target.value); }} />
             <button onClick={fetchData}>Predict Age</button>
             <h1>Predicted Age:{predictedAge?.age}</h1>
             <h1>Name:{predictedAge?.name}</h1>
             <h1>Count:{predictedAge?.count}</h1>
+
         </Box>
+
     );
 };
 
