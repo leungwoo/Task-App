@@ -49,6 +49,39 @@ body {
     text-align: center;
 } */
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 40px;
+    padding: 10px;
+}
+
+.addTask {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px
+}
 
 .link {
     font-weight: 600;
@@ -58,20 +91,23 @@ body {
 }
 
 .Play {
-    margin-top: 40px;
-    padding: 40px;
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
 }
 
 .Nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     margin-left: 10px;
+    padding-left: 20px;
 
 }
 
 .counter {
+    position: relative;
     display: flex;
-    border-radius: 80px;
+    border-radius: 50%;
     width: 100px;
     height: 100px;
     align-items: center;
@@ -81,7 +117,101 @@ body {
     margin-bottom: 10px;
 }
 
-.btn1:hover {
+.btn--minus {
+    position: relative;
+    background-color: black;
     color: aqua;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 0;
+    cursor: pointer;
+    margin-right: -20px;
+    z-index: 1;
 
+}
+
+.btn--plus {
+    position: relative;
+    background-color: black;
+    color: aqua;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 0;
+    cursor: pointer;
+    margin-left: -20px;
+}
+
+.circle-text {
+    position: absolute;
+    bottom: 50%;
+    width: 100%;
+    text-align: center;
+}
+
+.Meme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+}
+
+.image {
+    object-fit: cover;
+    margin: 10px
+}
+
+.home {
+    display: inline-block;
+
+    padding: 40px
+}
+
+.names {
+    display: inline-block;
+    border: 1px solid black;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    margin: 2px;
+    border-radius: 5px;
+
+
+}
+
+.form {
+
+    padding: 20px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    display: block;
+    text-indent: 2px;
+    border: black 2px solid;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    height: 30px;
+}
+
+input[type="checkbox"] {
+    margin: .75rem;
+
+}
+
+textarea {
+    display: block;
+    text-indent: 2px;
+    border: black 2px solid;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    height: 30px;
 }

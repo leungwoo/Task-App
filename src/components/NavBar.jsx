@@ -10,6 +10,9 @@ const NavBar = () => {
                 <Link className="link" to="/age">Age</Link>
                 <Link className="link" to="/catfacts">CatFacts</Link>
                 <Link className='link' to='/play'>Play </Link>
+                <Link className='link' to='/task'> To Do App</Link>
+                <Link className="link" to="/meme">Memes</Link>
+                <Link className="link" to="/forms">Forms</Link>
             </Toolbar>
         </AppBar>
 

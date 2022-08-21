@@ -1,44 +1,47 @@
 import React, { useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import './App.css';
+import AppTask from './AppTask';
 
-export default function Task(props) {
+export default function Task() {
     const [todoList, setTodoList] = useState([]);
     const [newTask, setNewTask] = useState('');
 
-    const addTask = () => {
+    function addTask() {
+
         const task = {
             id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
             taskName: newTask,
-            completed: false,
+            completed: false
         };
-        setTodoList([...todoList, task]);
+        task.taskName === "" ? alert("Input a Task") : setTodoList([...todoList, task]);
+    };
+    const deleteTask = (id) => {
+        setTodoList(todoList.filter(task => task.id !== id));
     };
 
-    const deleteTask = (id) => {
-        setTodoList(todoList.filter((task) => task.id !== id));
+    const completedTask = (id) => {
+        setTodoList(prevTodoList => {
+            return prevTodoList.map((t) => {
+                return t.id === id ? { ...t, completed: true } : t;
+            });
+        });
     };
-    const completeTask = (id) => {
-        setTodoList(todoList.map((task) => {
-            if (task.id === id) {
-                return { ...task, completed: true, };
-            }
-            else { return task; }
-        }));
-    };
+
+
     return (
-        <div className='task '
-            style={{ backgroundColor: props.completed ? "green" : "white" }}>
+        <div className='App'>
             <Box className='addTask' padding='100px'>
-                <TextField sx={{
-                    input: {
-                        fontWeight: '700',
-                        border: 'none',
-                        borderRadius: '4px'
-                    },
-                    width: { lg: '400px', xs: '250px' },
-                    backgroundColor: '#FFFF',
-                }}
+                <TextField
+                    sx={{
+                        input: {
+                            fontWeight: '700',
+                            border: 'none',
+                            borderRadius: '4px'
+                        },
+                        width: { lg: '400px', xs: '250px' },
+                        backgroundColor: '#FFFF',
+                    }}
                     placeholder='Enter New Task'
                     type="text"
                     onChange={(event) => { setNewTask(event.target.value); }} />
@@ -46,18 +49,19 @@ export default function Task(props) {
             </Box>
             <Box className='list'>
                 {todoList.map((task) => {
-                    return <Task
-                        taskName={task.taskName}
-                        id={task.id}
-                        completed={task.completed}
-                        deleteTask={deleteTask}
-                        completeTask={completeTask}
-                    />;
+                    return (
+                        <AppTask
+                            id={task.id}
+                            taskName={task.taskName}
+                            completed={task.completed}
+                            deleteTask={deleteTask}
+                            completedTask={completedTask}
+                        />
+                    );
+
                 })}
             </Box>
-            <h1>{props.taskName}</h1>
-            <button onClick={() => props.completeTask(props.id)}>completed</button>
-            <button onClick={() => props.deleteTask(props.id)}>X</button>
+
         </div>);
 };
 
