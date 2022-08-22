@@ -3,14 +3,14 @@ import { Box, Button } from "@mui/material";
 import memeData from '../memeData';
 
 const Meme = () => {
-    const [memeImage, setMemeImage] = React.useState(memeData);
+    const [meme, setMeme] = React.useState({
+        topText: "",
+        bottomText: "",
+        randomImage: "http://i.imgflip.com/1bij.jpg"
+    });
 
+    const [memeImage, setMemeImage] = React.useState(memeData.data.memes);
 
-    const itemData = () => {
-        const memesArr = memeData.data.memes;
-        setMemeImage(memesArr.map((i) => { return <h1>{i.name}</h1>; }));
-
-    };
 
     function getMemeImage() {
         const memeArray = memeData.data.memes;
@@ -18,15 +18,42 @@ const Meme = () => {
         const url = memeArray[randomNumber].url;
         setMemeImage(url);
     }
-
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            [name]: value
+        }));
+    }
     return (
-        <div className="Meme" >
-            <Button variant="contained" onClick={getMemeImage}>Change image</Button>
-            <Box>
-                <img src={memeImage} width="500px" height="500px" className='image' />
-                {itemData}
-            </Box>
-        </div>
+        <Box sx={{ marginTop: "30px" }}>
+            <form>
+                <input
+                    type="text"
+                    placeholder='Top-Text'
+                    name='topText'
+                    value={meme.topText}
+                    onChange={handleChange}
+                />
+                <input
+                    type="text"
+                    placeholder='Bottom-Text'
+                    name='bottomText'
+                    value={meme.bottomText}
+                    onChange={handleChange}
+                />
+                <Button
+                    variant="contained"
+                    onClick={getMemeImage}>
+                    Change image
+                </Button>
+            </form>
+            <div className="Meme" >
+                <img src={memeImage} width="500px" height="500px" className='meme--image' />
+                <h2 className='meme--text top'>{meme.topText}</h2>
+                <h2 className='meme--text bottom'>{meme.bottomText}</h2>
+            </div>
+        </Box>
     );
 };
 

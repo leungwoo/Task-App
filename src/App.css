@@ -56,6 +56,7 @@ body {
 body {
     margin-top: 40px;
     padding: 10px;
+    background-color: #639;
 }
 
 .addTask {
@@ -151,6 +152,7 @@ body {
 }
 
 .Meme {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,9 +161,43 @@ body {
     padding: 40px;
 }
 
-.image {
-    object-fit: cover;
-    margin: 10px
+.meme--text {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 15px 0;
+    padding: 0 5px;
+    font-family: impact, sans-serif;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow:
+        2px 2px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0 2px 0 #000,
+        2px 0 0 #000,
+        0 -2px 0 #000,
+        -2px 0 0 #000,
+        2px 2px 5px #000;
+}
+
+.top {
+    top: 40px
+}
+
+.bottom {
+    bottom: 40px;
+}
+
+.meme--image {
+
+    border-radius: 20px;
+    max-width: 100%
 }
 
 .home {
@@ -184,11 +220,12 @@ body {
 }
 
 .form {
+    background-color: rgb(242, 236, 228);
+    border-radius: 20px;
+    padding: 50px;
+    width: 100%;
 
-    padding: 20px;
-    width: 100px;
-    justify-content: center;
-    align-items: center;
+
 }
 
 input {
@@ -199,6 +236,8 @@ input {
     margin-bottom: 15px;
     border-radius: 5px;
     height: 30px;
+    width: 100px;
+    text-indent: 10px;
 }
 
 input[type="checkbox"] {
@@ -214,4 +253,11 @@ textarea {
     margin-bottom: 15px;
     border-radius: 5px;
     height: 30px;
+}
+
+.form--container {
+    height: 100vh;
+    margin-top: 20px;
+    padding: 100px;
+
 }
